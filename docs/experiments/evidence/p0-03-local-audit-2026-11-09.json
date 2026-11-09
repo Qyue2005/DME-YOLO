@@ -1,0 +1,1444 @@
+{
+  "checked_at_utc": "2026-11-09T12:33:36.738726+00:00",
+  "source_commit": {
+    "returncode": 0,
+    "stdout": "d39e2806049762770df9487f7da5273b8242965e",
+    "stderr": ""
+  },
+  "python": "3.11.16",
+  "os": "Windows-10-10.0.26300-SP0",
+  "cpu_threads": 16,
+  "packages": {
+    "torch": "2.14.0+cu132",
+    "torchvision": null,
+    "numpy": "2.4.6",
+    "scipy": null,
+    "PyYAML": "6.0.3",
+    "timm": null,
+    "einops": null,
+    "PyWavelets": null,
+    "opencv-python": null,
+    "huggingface-hub": null,
+    "pandas": null,
+    "matplotlib": "3.11.2",
+    "thop": null
+  },
+  "gpu_inventory": {
+    "returncode": 0,
+    "stdout": "NVIDIA GeForce RTX 3070 Laptop GPU, 621.01, 8192 MiB, 8.6",
+    "stderr": ""
+  },
+  "syntax": {
+    "status": "ok",
+    "result": {
+      "files_checked": 201,
+      "errors": [],
+      "scope": "syntax only; imports not executed"
+    }
+  },
+  "model_graphs": {
+    "yolov10n.yaml": {
+      "status": "ok",
+      "result": {
+        "nc": 80,
+        "scale_key": "n",
+        "scales": {
+          "n": [
+            0.33,
+            0.25,
+            1024
+          ]
+        },
+        "method": "Static channel/stride propagation for listed module types; no tensor execution",
+        "not_reaching_final_output": [],
+        "layers": [
+          {
+            "layer": 0,
+            "module": "Conv",
+            "parents": [
+              -1
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              3
+            ],
+            "input_strides": [
+              1
+            ],
+            "output_channels": 16,
+            "stride": 2
+          },
+          {
+            "layer": 1,
+            "module": "Conv",
+            "parents": [
+              0
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              16
+            ],
+            "input_strides": [
+              2
+            ],
+            "output_channels": 32,
+            "stride": 4
+          },
+          {
+            "layer": 2,
+            "module": "C2f",
+            "parents": [
+              1
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              32
+            ],
+            "input_strides": [
+              4
+            ],
+            "output_channels": 32,
+            "stride": 4
+          },
+          {
+            "layer": 3,
+            "module": "Conv",
+            "parents": [
+              2
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              32
+            ],
+            "input_strides": [
+              4
+            ],
+            "output_channels": 64,
+            "stride": 8
+          },
+          {
+            "layer": 4,
+            "module": "C2f",
+            "parents": [
+              3
+            ],
+            "effective_repeats": 2,
+            "input_channels": [
+              64
+            ],
+            "input_strides": [
+              8
+            ],
+            "output_channels": 64,
+            "stride": 8
+          },
+          {
+            "layer": 5,
+            "module": "SCDown",
+            "parents": [
+              4
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              64
+            ],
+            "input_strides": [
+              8
+            ],
+            "output_channels": 128,
+            "stride": 16
+          },
+          {
+            "layer": 6,
+            "module": "C2f",
+            "parents": [
+              5
+            ],
+            "effective_repeats": 2,
+            "input_channels": [
+              128
+            ],
+            "input_strides": [
+              16
+            ],
+            "output_channels": 128,
+            "stride": 16
+          },
+          {
+            "layer": 7,
+            "module": "SCDown",
+            "parents": [
+              6
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              128
+            ],
+            "input_strides": [
+              16
+            ],
+            "output_channels": 256,
+            "stride": 32
+          },
+          {
+            "layer": 8,
+            "module": "C2f",
+            "parents": [
+              7
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              256
+            ],
+            "input_strides": [
+              32
+            ],
+            "output_channels": 256,
+            "stride": 32
+          },
+          {
+            "layer": 9,
+            "module": "SPPF",
+            "parents": [
+              8
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              256
+            ],
+            "input_strides": [
+              32
+            ],
+            "output_channels": 256,
+            "stride": 32
+          },
+          {
+            "layer": 10,
+            "module": "PSA",
+            "parents": [
+              9
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              256
+            ],
+            "input_strides": [
+              32
+            ],
+            "output_channels": 256,
+            "stride": 32
+          },
+          {
+            "layer": 11,
+            "module": "nn.Upsample",
+            "parents": [
+              10
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              256
+            ],
+            "input_strides": [
+              32
+            ],
+            "output_channels": 256,
+            "stride": 16.0
+          },
+          {
+            "layer": 12,
+            "module": "Concat",
+            "parents": [
+              11,
+              6
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              256,
+              128
+            ],
+            "input_strides": [
+              16.0,
+              16
+            ],
+            "output_channels": 384,
+            "stride": 16.0
+          },
+          {
+            "layer": 13,
+            "module": "C2f",
+            "parents": [
+              12
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              384
+            ],
+            "input_strides": [
+              16.0
+            ],
+            "output_channels": 128,
+            "stride": 16.0
+          },
+          {
+            "layer": 14,
+            "module": "nn.Upsample",
+            "parents": [
+              13
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              128
+            ],
+            "input_strides": [
+              16.0
+            ],
+            "output_channels": 128,
+            "stride": 8.0
+          },
+          {
+            "layer": 15,
+            "module": "Concat",
+            "parents": [
+              14,
+              4
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              128,
+              64
+            ],
+            "input_strides": [
+              8.0,
+              8
+            ],
+            "output_channels": 192,
+            "stride": 8.0
+          },
+          {
+            "layer": 16,
+            "module": "C2f",
+            "parents": [
+              15
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              192
+            ],
+            "input_strides": [
+              8.0
+            ],
+            "output_channels": 64,
+            "stride": 8.0
+          },
+          {
+            "layer": 17,
+            "module": "Conv",
+            "parents": [
+              16
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              64
+            ],
+            "input_strides": [
+              8.0
+            ],
+            "output_channels": 64,
+            "stride": 16.0
+          },
+          {
+            "layer": 18,
+            "module": "Concat",
+            "parents": [
+              17,
+              13
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              64,
+              128
+            ],
+            "input_strides": [
+              16.0,
+              16.0
+            ],
+            "output_channels": 192,
+            "stride": 16.0
+          },
+          {
+            "layer": 19,
+            "module": "C2f",
+            "parents": [
+              18
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              192
+            ],
+            "input_strides": [
+              16.0
+            ],
+            "output_channels": 128,
+            "stride": 16.0
+          },
+          {
+            "layer": 20,
+            "module": "SCDown",
+            "parents": [
+              19
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              128
+            ],
+            "input_strides": [
+              16.0
+            ],
+            "output_channels": 128,
+            "stride": 32.0
+          },
+          {
+            "layer": 21,
+            "module": "Concat",
+            "parents": [
+              20,
+              10
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              128,
+              256
+            ],
+            "input_strides": [
+              32.0,
+              32
+            ],
+            "output_channels": 384,
+            "stride": 32.0
+          },
+          {
+            "layer": 22,
+            "module": "C2fCIB",
+            "parents": [
+              21
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              384
+            ],
+            "input_strides": [
+              32.0
+            ],
+            "output_channels": 256,
+            "stride": 32.0
+          },
+          {
+            "layer": 23,
+            "module": "v10Detect",
+            "parents": [
+              16,
+              19,
+              22
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              64,
+              128,
+              256
+            ],
+            "input_strides": [
+              8.0,
+              16.0,
+              32.0
+            ]
+          }
+        ]
+      }
+    },
+    "yolov10n_ODConv.yaml": {
+      "status": "ok",
+      "result": {
+        "nc": 6,
+        "scale_key": "n",
+        "scales": {
+          "n": [
+            0.67,
+            0.75,
+            768
+          ]
+        },
+        "method": "Static channel/stride propagation for listed module types; no tensor execution",
+        "not_reaching_final_output": [
+          23
+        ],
+        "layers": [
+          {
+            "layer": 0,
+            "module": "Conv",
+            "parents": [
+              -1
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              3
+            ],
+            "input_strides": [
+              1
+            ],
+            "output_channels": 48,
+            "stride": 2
+          },
+          {
+            "layer": 1,
+            "module": "ODConv",
+            "parents": [
+              0
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              48
+            ],
+            "input_strides": [
+              2
+            ],
+            "output_channels": 96,
+            "stride": 4
+          },
+          {
+            "layer": 2,
+            "module": "C2f",
+            "parents": [
+              1
+            ],
+            "effective_repeats": 2,
+            "input_channels": [
+              96
+            ],
+            "input_strides": [
+              4
+            ],
+            "output_channels": 96,
+            "stride": 4
+          },
+          {
+            "layer": 3,
+            "module": "ODConv",
+            "parents": [
+              2
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              96
+            ],
+            "input_strides": [
+              4
+            ],
+            "output_channels": 192,
+            "stride": 8
+          },
+          {
+            "layer": 4,
+            "module": "C2f",
+            "parents": [
+              3
+            ],
+            "effective_repeats": 4,
+            "input_channels": [
+              192
+            ],
+            "input_strides": [
+              8
+            ],
+            "output_channels": 192,
+            "stride": 8
+          },
+          {
+            "layer": 5,
+            "module": "SCDown",
+            "parents": [
+              4
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              192
+            ],
+            "input_strides": [
+              8
+            ],
+            "output_channels": 384,
+            "stride": 16
+          },
+          {
+            "layer": 6,
+            "module": "C2f",
+            "parents": [
+              5
+            ],
+            "effective_repeats": 4,
+            "input_channels": [
+              384
+            ],
+            "input_strides": [
+              16
+            ],
+            "output_channels": 384,
+            "stride": 16
+          },
+          {
+            "layer": 7,
+            "module": "SCDown",
+            "parents": [
+              6
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              384
+            ],
+            "input_strides": [
+              16
+            ],
+            "output_channels": 576,
+            "stride": 32
+          },
+          {
+            "layer": 8,
+            "module": "C2f",
+            "parents": [
+              7
+            ],
+            "effective_repeats": 2,
+            "input_channels": [
+              576
+            ],
+            "input_strides": [
+              32
+            ],
+            "output_channels": 576,
+            "stride": 32
+          },
+          {
+            "layer": 9,
+            "module": "SPPF",
+            "parents": [
+              8
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              576
+            ],
+            "input_strides": [
+              32
+            ],
+            "output_channels": 576,
+            "stride": 32
+          },
+          {
+            "layer": 10,
+            "module": "EAMA",
+            "parents": [
+              9
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              576
+            ],
+            "input_strides": [
+              32
+            ],
+            "output_channels": 576,
+            "stride": 32,
+            "default_factor32_divisible": true
+          },
+          {
+            "layer": 11,
+            "module": "PSA",
+            "parents": [
+              10
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              576
+            ],
+            "input_strides": [
+              32
+            ],
+            "output_channels": 576,
+            "stride": 32
+          },
+          {
+            "layer": 12,
+            "module": "nn.Upsample",
+            "parents": [
+              11
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              576
+            ],
+            "input_strides": [
+              32
+            ],
+            "output_channels": 576,
+            "stride": 16.0
+          },
+          {
+            "layer": 13,
+            "module": "Concat",
+            "parents": [
+              12,
+              6
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              576,
+              384
+            ],
+            "input_strides": [
+              16.0,
+              16
+            ],
+            "output_channels": 960,
+            "stride": 16.0
+          },
+          {
+            "layer": 14,
+            "module": "C2f",
+            "parents": [
+              13
+            ],
+            "effective_repeats": 2,
+            "input_channels": [
+              960
+            ],
+            "input_strides": [
+              16.0
+            ],
+            "output_channels": 384,
+            "stride": 16.0
+          },
+          {
+            "layer": 15,
+            "module": "nn.Upsample",
+            "parents": [
+              14
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              384
+            ],
+            "input_strides": [
+              16.0
+            ],
+            "output_channels": 384,
+            "stride": 8.0
+          },
+          {
+            "layer": 16,
+            "module": "Concat",
+            "parents": [
+              15,
+              4
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              384,
+              192
+            ],
+            "input_strides": [
+              8.0,
+              8
+            ],
+            "output_channels": 576,
+            "stride": 8.0
+          },
+          {
+            "layer": 17,
+            "module": "C2f",
+            "parents": [
+              16
+            ],
+            "effective_repeats": 2,
+            "input_channels": [
+              576
+            ],
+            "input_strides": [
+              8.0
+            ],
+            "output_channels": 192,
+            "stride": 8.0
+          },
+          {
+            "layer": 18,
+            "module": "Conv",
+            "parents": [
+              17
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              192
+            ],
+            "input_strides": [
+              8.0
+            ],
+            "output_channels": 192,
+            "stride": 16.0
+          },
+          {
+            "layer": 19,
+            "module": "Concat",
+            "parents": [
+              18,
+              13
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              192,
+              960
+            ],
+            "input_strides": [
+              16.0,
+              16.0
+            ],
+            "output_channels": 1152,
+            "stride": 16.0
+          },
+          {
+            "layer": 20,
+            "module": "C2f",
+            "parents": [
+              19
+            ],
+            "effective_repeats": 2,
+            "input_channels": [
+              1152
+            ],
+            "input_strides": [
+              16.0
+            ],
+            "output_channels": 384,
+            "stride": 16.0
+          },
+          {
+            "layer": 21,
+            "module": "SCDown",
+            "parents": [
+              20
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              384
+            ],
+            "input_strides": [
+              16.0
+            ],
+            "output_channels": 384,
+            "stride": 32.0
+          },
+          {
+            "layer": 22,
+            "module": "Concat",
+            "parents": [
+              21,
+              10
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              384,
+              576
+            ],
+            "input_strides": [
+              32.0,
+              32
+            ],
+            "output_channels": 960,
+            "stride": 32.0
+          },
+          {
+            "layer": 23,
+            "module": "C2fCIB",
+            "parents": [
+              22
+            ],
+            "effective_repeats": 2,
+            "input_channels": [
+              960
+            ],
+            "input_strides": [
+              32.0
+            ],
+            "output_channels": 576,
+            "stride": 32.0
+          },
+          {
+            "layer": 24,
+            "module": "v10Detect",
+            "parents": [
+              16,
+              19,
+              22
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              576,
+              1152,
+              960
+            ],
+            "input_strides": [
+              8.0,
+              16.0,
+              32.0
+            ]
+          }
+        ]
+      }
+    },
+    "yolov10m.yaml": {
+      "status": "ok",
+      "result": {
+        "nc": 80,
+        "scale_key": "m",
+        "scales": {
+          "m": [
+            0.67,
+            0.75,
+            768
+          ]
+        },
+        "method": "Static channel/stride propagation for listed module types; no tensor execution",
+        "not_reaching_final_output": [],
+        "layers": [
+          {
+            "layer": 0,
+            "module": "Conv",
+            "parents": [
+              -1
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              3
+            ],
+            "input_strides": [
+              1
+            ],
+            "output_channels": 48,
+            "stride": 2
+          },
+          {
+            "layer": 1,
+            "module": "Conv",
+            "parents": [
+              0
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              48
+            ],
+            "input_strides": [
+              2
+            ],
+            "output_channels": 96,
+            "stride": 4
+          },
+          {
+            "layer": 2,
+            "module": "C2f",
+            "parents": [
+              1
+            ],
+            "effective_repeats": 2,
+            "input_channels": [
+              96
+            ],
+            "input_strides": [
+              4
+            ],
+            "output_channels": 96,
+            "stride": 4
+          },
+          {
+            "layer": 3,
+            "module": "Conv",
+            "parents": [
+              2
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              96
+            ],
+            "input_strides": [
+              4
+            ],
+            "output_channels": 192,
+            "stride": 8
+          },
+          {
+            "layer": 4,
+            "module": "C2f",
+            "parents": [
+              3
+            ],
+            "effective_repeats": 4,
+            "input_channels": [
+              192
+            ],
+            "input_strides": [
+              8
+            ],
+            "output_channels": 192,
+            "stride": 8
+          },
+          {
+            "layer": 5,
+            "module": "SCDown",
+            "parents": [
+              4
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              192
+            ],
+            "input_strides": [
+              8
+            ],
+            "output_channels": 384,
+            "stride": 16
+          },
+          {
+            "layer": 6,
+            "module": "C2f",
+            "parents": [
+              5
+            ],
+            "effective_repeats": 4,
+            "input_channels": [
+              384
+            ],
+            "input_strides": [
+              16
+            ],
+            "output_channels": 384,
+            "stride": 16
+          },
+          {
+            "layer": 7,
+            "module": "SCDown",
+            "parents": [
+              6
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              384
+            ],
+            "input_strides": [
+              16
+            ],
+            "output_channels": 576,
+            "stride": 32
+          },
+          {
+            "layer": 8,
+            "module": "C2fCIB",
+            "parents": [
+              7
+            ],
+            "effective_repeats": 2,
+            "input_channels": [
+              576
+            ],
+            "input_strides": [
+              32
+            ],
+            "output_channels": 576,
+            "stride": 32
+          },
+          {
+            "layer": 9,
+            "module": "SPPF",
+            "parents": [
+              8
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              576
+            ],
+            "input_strides": [
+              32
+            ],
+            "output_channels": 576,
+            "stride": 32
+          },
+          {
+            "layer": 10,
+            "module": "PSA",
+            "parents": [
+              9
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              576
+            ],
+            "input_strides": [
+              32
+            ],
+            "output_channels": 576,
+            "stride": 32
+          },
+          {
+            "layer": 11,
+            "module": "nn.Upsample",
+            "parents": [
+              10
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              576
+            ],
+            "input_strides": [
+              32
+            ],
+            "output_channels": 576,
+            "stride": 16.0
+          },
+          {
+            "layer": 12,
+            "module": "Concat",
+            "parents": [
+              11,
+              6
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              576,
+              384
+            ],
+            "input_strides": [
+              16.0,
+              16
+            ],
+            "output_channels": 960,
+            "stride": 16.0
+          },
+          {
+            "layer": 13,
+            "module": "C2f",
+            "parents": [
+              12
+            ],
+            "effective_repeats": 2,
+            "input_channels": [
+              960
+            ],
+            "input_strides": [
+              16.0
+            ],
+            "output_channels": 384,
+            "stride": 16.0
+          },
+          {
+            "layer": 14,
+            "module": "nn.Upsample",
+            "parents": [
+              13
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              384
+            ],
+            "input_strides": [
+              16.0
+            ],
+            "output_channels": 384,
+            "stride": 8.0
+          },
+          {
+            "layer": 15,
+            "module": "Concat",
+            "parents": [
+              14,
+              4
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              384,
+              192
+            ],
+            "input_strides": [
+              8.0,
+              8
+            ],
+            "output_channels": 576,
+            "stride": 8.0
+          },
+          {
+            "layer": 16,
+            "module": "C2f",
+            "parents": [
+              15
+            ],
+            "effective_repeats": 2,
+            "input_channels": [
+              576
+            ],
+            "input_strides": [
+              8.0
+            ],
+            "output_channels": 192,
+            "stride": 8.0
+          },
+          {
+            "layer": 17,
+            "module": "Conv",
+            "parents": [
+              16
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              192
+            ],
+            "input_strides": [
+              8.0
+            ],
+            "output_channels": 192,
+            "stride": 16.0
+          },
+          {
+            "layer": 18,
+            "module": "Concat",
+            "parents": [
+              17,
+              13
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              192,
+              384
+            ],
+            "input_strides": [
+              16.0,
+              16.0
+            ],
+            "output_channels": 576,
+            "stride": 16.0
+          },
+          {
+            "layer": 19,
+            "module": "C2fCIB",
+            "parents": [
+              18
+            ],
+            "effective_repeats": 2,
+            "input_channels": [
+              576
+            ],
+            "input_strides": [
+              16.0
+            ],
+            "output_channels": 384,
+            "stride": 16.0
+          },
+          {
+            "layer": 20,
+            "module": "SCDown",
+            "parents": [
+              19
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              384
+            ],
+            "input_strides": [
+              16.0
+            ],
+            "output_channels": 384,
+            "stride": 32.0
+          },
+          {
+            "layer": 21,
+            "module": "Concat",
+            "parents": [
+              20,
+              10
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              384,
+              576
+            ],
+            "input_strides": [
+              32.0,
+              32
+            ],
+            "output_channels": 960,
+            "stride": 32.0
+          },
+          {
+            "layer": 22,
+            "module": "C2fCIB",
+            "parents": [
+              21
+            ],
+            "effective_repeats": 2,
+            "input_channels": [
+              960
+            ],
+            "input_strides": [
+              32.0
+            ],
+            "output_channels": 576,
+            "stride": 32.0
+          },
+          {
+            "layer": 23,
+            "module": "v10Detect",
+            "parents": [
+              16,
+              19,
+              22
+            ],
+            "effective_repeats": 1,
+            "input_channels": [
+              192,
+              384,
+              576
+            ],
+            "input_strides": [
+              8.0,
+              16.0,
+              32.0
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "runtime": {
+    "status": "ok",
+    "result": {
+      "torch": "2.14.0+cu132",
+      "cuda_build": "13.2",
+      "cuda_available": true,
+      "device_requested": "cuda",
+      "compiled_arches": [
+        "sm_75",
+        "sm_80",
+        "sm_86",
+        "sm_90",
+        "sm_100",
+        "sm_120"
+      ],
+      "gpu": "NVIDIA GeForce RTX 3070 Laptop GPU",
+      "compute_capability": [
+        8,
+        6
+      ],
+      "isolated_modules_fp32": {
+        "ODConv_48_96": {
+          "status": "ok",
+          "result": {
+            "input_shape": [
+              2,
+              48,
+              32,
+              32
+            ],
+            "output_shape": [
+              2,
+              96,
+              16,
+              16
+            ],
+            "loss": 0.004018963780254126,
+            "finite": true,
+            "optimizer_steps": 1,
+            "parameters_without_gradient": [
+              "attention.bn.weight",
+              "attention.bn.bias"
+            ]
+          }
+        },
+        "ODConv_96_192": {
+          "status": "ok",
+          "result": {
+            "input_shape": [
+              2,
+              96,
+              16,
+              16
+            ],
+            "output_shape": [
+              2,
+              192,
+              8,
+              8
+            ],
+            "loss": 0.004054236225783825,
+            "finite": true,
+            "optimizer_steps": 1,
+            "parameters_without_gradient": [
+              "attention.bn.weight",
+              "attention.bn.bias"
+            ]
+          }
+        },
+        "EAMA_576": {
+          "status": "ok",
+          "result": {
+            "input_shape": [
+              2,
+              576,
+              20,
+              20
+            ],
+            "output_shape": [
+              2,
+              576,
+              20,
+              20
+            ],
+            "loss": 0.2506501376628876,
+            "finite": true,
+            "optimizer_steps": 1,
+            "parameters_without_gradient": []
+          }
+        },
+        "C2f_EAMA_default": {
+          "status": "ok",
+          "result": {
+            "input_shape": [
+              2,
+              64,
+              8,
+              8
+            ],
+            "output_shape": [
+              2,
+              64,
+              8,
+              8
+            ],
+            "loss": 0.13643641769886017,
+            "finite": true,
+            "optimizer_steps": 1,
+            "parameters_without_gradient": []
+          }
+        },
+        "C2f_EAMA_nondefault_e025": {
+          "status": "error",
+          "type": "RuntimeError",
+          "message": "Given groups=1, weight of size [1, 1, 1, 1], expected input[64, 2, 16, 1] to have 1 channels, but got 2 channels instead"
+        }
+      },
+      "default_torch_load_self_created_full_model": {
+        "status": "error",
+        "type": "UnpicklingError",
+        "message": "Weights only load failed. This file can still be loaded, to do so you have two options, \u001b[1mdo those steps only if you trust the source of the checkpoint\u001b[0m. \n\t(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.\n\t(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.\n\tWeightsUnpickler error: Unsupported global: GLOBAL torch.nn.modules.linear.Linear was not an allowed global by default. Please use `torch.serialization.add_safe_globals([torch.nn.modules.linear.Linear])` or the `torch.serialization.safe_globals([torch.nn.modules.linear.Linear])` context manager to allowlist this global if you trust this class/function.\n\nCheck the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+      },
+      "compute_ap_isolated": {
+        "status": "error",
+        "type": "AttributeError",
+        "message": "module 'numpy' has no attribute 'trapz'"
+      },
+      "full_model_training_validation": "NOT RUN: isolated probes do not load the full package, datasets, or weights"
+    }
+  }
+}

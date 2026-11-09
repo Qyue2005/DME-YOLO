@@ -1,3 +1,5 @@
+> **2026-11-09 P0-03 检查更新：** 本地默认 Python 为 3.14，原安装脚本不会严格核验解释器版本；现有环境与模型还存在已确认的依赖和兼容问题。以下原安装说明尚未按本次检查修正，请先阅读 [中文环境与模型检查报告](docs/experiments/P0-03_ENVIRONMENT_MODEL_AUDIT_ZH.md)，按专用环境方案完成验证。服务器候选为 Python 3.11、torch 2.9.1 / torchvision 0.24.1 / cu128，仍待实机验收。
+
 # Windows environment setup
 
 This project is intended to run on Windows with Python 3.10 and a fresh virtual environment.
