@@ -1,0 +1,75 @@
+{
+  "pip_check": "passed",
+  "syntax_files": 205,
+  "python": "Python 3.11.16",
+  "environment_isolated": true,
+  "setup_checks": [
+    {
+      "check": "supported_python",
+      "result": "passed"
+    },
+    {
+      "check": "python314_rejected",
+      "result": "passed",
+      "error": "-PythonExe must point to a working Python 3.10 or 3.11 interpreter."
+    },
+    {
+      "check": "missing_python_rejected",
+      "result": "passed",
+      "error": "-PythonExe must point to a working Python 3.10 or 3.11 interpreter."
+    },
+    {
+      "check": "outside_repo_rejected",
+      "result": "passed",
+      "error": "VenvDir must be a directory inside this repository."
+    },
+    {
+      "check": "native_exit7_rejected",
+      "result": "passed"
+    }
+  ],
+  "cli_checks": {
+    "train.py_import_without_dependencies": "passed",
+    "test.py_import_without_dependencies": "passed",
+    "missing_data": "passed",
+    "initialization_required": "passed",
+    "missing_weights": "passed"
+  },
+  "lock_sha256": "a883a080a03b5e6e97b2ec313b8b3dd68504f076e251094812f9c08cb0dab607",
+  "gpu_environment_check": {
+    "status": "passed",
+    "torch": "2.9.1+cu128",
+    "torchvision": "0.24.1+cu128",
+    "cuda_build": "12.8",
+    "matmul": "passed",
+    "torchvision_nms": "passed",
+    "local_package": "passed"
+  },
+  "regression_tests": {
+    "status": "passed",
+    "test_methods": 6,
+    "numpy": "1.26.4",
+    "command": "python tools/test_p0_03_compat.py"
+  },
+  "numpy2_ap_check": {
+    "status": "passed",
+    "numpy": "2.4.6",
+    "reference_curves": 3,
+    "expected_ap": [
+      0.995,
+      0.75,
+      0.0
+    ],
+    "command": "python tools/test_p0_03_compat.py APCompatibilityTests"
+  },
+  "source_sha256": {
+    "setup_windows.ps1": "8c19f1362fe0be91ddbd6036462ca25a7c7aff5773e136bab362cf69a4b14447",
+    "train.py": "e85c52c0423f8974c3323335f228f0b4cdffecc6e63ea20922c4d28f904858bf",
+    "test.py": "d9e3e00bbbfa33f1587bfbad406460582859ba1b63fb489ccdcd0c944de9e1fa",
+    "tools/test_p0_03_compat.py": "05c1822031b89d20807853abf4c079227bcf1f7663497afb29d29fd747dbba18",
+    "tools/verify_environment.py": "9e02bf11efcb8f7ccebf5c13e319aec46908fbf7f3d33b8c14eeecf2dc29029b",
+    "requirements-detector.txt": "4fab326ddc3c4cac3cc7e11a65f1e1f61d2e599e89fc9a50d2e1686e82d3ff23",
+    "pyproject.toml": "d477e3152236a3699f060f05b8ff97736bf10c19f3db01b54ac6424ca68b359b"
+  },
+  "source_hash_encoding": "UTF-8 with LF line endings"
+}

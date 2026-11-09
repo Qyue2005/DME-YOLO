@@ -5,8 +5,9 @@ from torch import nn
 class EMAttention(nn.Module):
     def __init__(self, channels, c2=None, factor=32):
         super(EMAttention, self).__init__()
+        if not isinstance(factor, int) or factor <= 0 or channels < factor or channels % factor:
+            raise ValueError(f"channels ({channels}) must be divisible by a positive integer factor ({factor})")
         self.groups = factor
-        assert channels // self.groups > 0
         self.softmax = nn.Softmax(-1)
         self.agp = nn.AdaptiveAvgPool2d((1, 1))
         self.pool_h = nn.AdaptiveAvgPool2d((None, 1))
@@ -131,7 +132,7 @@ class C2f_EAMA(nn.Module):
         self.cv1 = Conv(c1, 2 * self.c, 1, 1)
         self.cv2 = Conv((2 + n) * self.c, c2, 1)  # optional act=FReLU(c2)
         self.m = nn.ModuleList(Bottleneck(self.c, self.c, shortcut, g, k=((3, 3), (3, 3)), e=1.0) for _ in range(n))
-        self.eama = EAMA(channels=2 * self.c, factor=factor, alpha=alpha)
+        self.eama = EAMA(channels=c2, factor=factor, alpha=alpha)  # cv2 outputs c2 for every expansion ratio
 
     def forward(self, x):
         """Forward pass through C2f_EAMA layer."""

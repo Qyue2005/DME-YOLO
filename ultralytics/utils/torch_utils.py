@@ -465,7 +465,7 @@ class ModelEMA:
 
 def strip_optimizer(f: Union[str, Path] = "best.pt", s: str = "") -> None:
     """
-    Strip optimizer from 'f' to finalize training, optionally save as 's'.
+    Strip optimizer from a trusted, locally generated training checkpoint, optionally save as 's'.
 
     Args:
         f (str): file path to model to strip the optimizer from. Default is 'best.pt'.
@@ -483,14 +483,16 @@ def strip_optimizer(f: Union[str, Path] = "best.pt", s: str = "") -> None:
             strip_optimizer(f)
         ```
     """
-    x = torch.load(f, map_location=torch.device("cpu"))
+    # Training checkpoints contain nn.Module objects, not just tensor state_dicts.
+    # Only use this routine with trusted training outputs (PyTorch >=2.6 defaults to weights_only=True).
+    x = torch.load(f, map_location=torch.device("cpu"), weights_only=False)
     if "model" not in x:
         LOGGER.info(f"Skipping {f}, not a valid Ultralytics model.")
         return
 
     if hasattr(x["model"], "args"):
         x["model"].args = dict(x["model"].args)  # convert from IterableSimpleNamespace to dict
-    args = {**DEFAULT_CFG_DICT, **x["train_args"]} if "train_args" in x else None  # combine args
+    args = {**DEFAULT_CFG_DICT, **(x.get("train_args") or {})}  # legacy checkpoints may omit train_args
     if x.get("ema"):
         x["model"] = x["ema"]  # replace model with ema
     for k in "optimizer", "best_fitness", "ema", "updates":  # keys

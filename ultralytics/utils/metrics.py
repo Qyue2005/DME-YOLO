@@ -521,7 +521,9 @@ def compute_ap(recall, precision):
     method = "interp"  # methods: 'continuous', 'interp'
     if method == "interp":
         x = np.linspace(0, 1, 101)  # 101-point interp (COCO)
-        ap = np.trapz(np.interp(x, mrec, mpre), x)  # integrate
+        # NumPy 2.x renamed trapz; keep the same trapezoidal integration on 1.x.
+        integrate = np.trapezoid if hasattr(np, "trapezoid") else np.trapz
+        ap = integrate(np.interp(x, mrec, mpre), x)
     else:  # 'continuous'
         i = np.where(mrec[1:] != mrec[:-1])[0]  # points where x-axis (recall) changes
         ap = np.sum((mrec[i + 1] - mrec[i]) * mpre[i + 1])  # area under curve
